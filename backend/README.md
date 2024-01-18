@@ -38,15 +38,11 @@ The `JwtAuthFitler` is necessary to read the JWT from the HTTP headers.
 
 The `PasswordConfig` is to encode and decode the passwords, to avoid having the passwords in plain text.
 
+The `RestExceptionHandler`, an aspect to catch all the exceptions and return a pretty response.
+
 The `SecurityConfig` contains the Spring Security 6 configuration, with the protected routes, exception handler and the http filters.
 
-The `UserAuthenticationEntryPoint` manages the exceptions.
-
 The `UserAuthenticationProvider` manages the authentication, creating the JWT or validating it.
-
-The `UsernamePasswordAuthFitler` is the filter which reads the username and password information.
-
-The `WebConfig` contains the CORS configuration.
 
 ### Controllers
 

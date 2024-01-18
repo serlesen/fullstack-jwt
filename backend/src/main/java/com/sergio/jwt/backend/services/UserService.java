@@ -4,6 +4,7 @@ import com.sergio.jwt.backend.dtos.CredentialsDto;
 import com.sergio.jwt.backend.dtos.SignUpDto;
 import com.sergio.jwt.backend.dtos.UserDto;
 import com.sergio.jwt.backend.entites.User;
+import com.sergio.jwt.backend.enums.Role;
 import com.sergio.jwt.backend.exceptions.AppException;
 import com.sergio.jwt.backend.mappers.UserMapper;
 import com.sergio.jwt.backend.repositories.UserRepository;
@@ -43,6 +44,7 @@ public class UserService {
         }
 
         User user = userMapper.signUpToUser(userDto);
+        user.setRole(Role.USER);
         user.setPassword(passwordEncoder.encode(CharBuffer.wrap(userDto.getPassword())));
 
         User savedUser = userRepository.save(user);

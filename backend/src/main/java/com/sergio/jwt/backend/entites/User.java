@@ -1,5 +1,6 @@
 package com.sergio.jwt.backend.entites;
 
+import com.sergio.jwt.backend.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,10 @@ public class User {
     @Column(name = "last_name", nullable = false)
     @Size(max = 100)
     private String lastName;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
     @Column(nullable = false)
     @Size(max = 100)

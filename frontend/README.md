@@ -1,65 +1,39 @@
-# React Frontend
+# Frontend
 
-React Frontend connected to a Spring Boot backend.
+React frontend connected to a Spring Boot backend.
 
-The frontend is as simple as possible to just show the logic of authentication via a JWT.
+The frontend is as simple as possible to show the logic of authentication and authorization with JWT.
 
-## Install
+The frontend only decodes the JWT to show one component or another depending on the roles present in the JWT.
 
-```
-yarn install
-```
+## Start the app
 
-## Run on local
+To start the development server run `nx serve frontend`. Open your browser and navigate to http://localhost:4200/.
 
-```
-yarn start
-```
-
-The application will run on `http://localhost:3000`
 
 ## Components
 
 ### App
 
-Main wrapper component. It has no logic inside. It just places the Header and the AppContent.
+It's the main component which manages the display of the rest of the application.
 
-### AppContent
+### CustomJwtPayload
 
-Displays the Buttons and the Content of the application.
+It's an object which represents the internal structure of the decoded JWT. It extends the JwtPayload from the library jwt-decode
+because I include a custom claim, role, that the frontend needs to access.
 
-The Buttons are there to show the login form or logout the user.
+### Login
 
-At the beginning, nothing is shown but the WelcomeContent component with a welcome message.
+Component to display the login form and request the backend to log in the user.
 
-Once authenticated via the login form, the AppContent component displays the AuthContent component with the protected information.
+### Messages
 
-### Buttons
+Component which displays a message from a regular user. 
 
-It displays two buttons. The login button only displays the login form. The logout button removes all the authentication information of the user.
+### ProtectedMessages
 
-### Header
+Component which displays a protected message from an admin user.
 
-Static header with the title and the logo.
+### BackendServices
 
-### LoginForm
-
-Displays a splitted Form with the Login form on one side and the register form on the other side. 
-
-Submitting one form or the other will request different endpoints in the backend.
-
-To switch from the Login form to the Register form, I've tried to use the Bootstrap Pills, but haven't succeed. Instead I do it with Javascript.
-
-### WelcomeContent
-
-Simple component which displays a Welcome message.
-
-## Authentication
-
-The authentication used is JWT. First, the user must login in the backend with a username and password.
-
-If the credentials are correct, a JWT will be returned.
-
-The JWT will be stored in the localstorage for further usage.
-
-When available the JWT will be sent in the Authorization Header for each requests made with axios.
+Service which manages the JWT stored in the local storage.
